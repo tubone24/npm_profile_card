@@ -1,13 +1,13 @@
 import chalk from "chalk";
-import boxen from "boxen";
+import boxen, { Options, BorderStyle } from "boxen";
 import { writeFileSync } from "fs";
 import { join } from "path";
 
 // Define options for Boxen
-const options: boxen.Options = {
+const options: Options = {
     padding: 1,
     margin: 1,
-    borderStyle: "round"
+    borderStyle: BorderStyle.Round
 };
 
 const data = {
