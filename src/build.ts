@@ -4,7 +4,7 @@ import { writeFileSync } from "fs";
 import { join } from "path";
 
 // Define options for Boxen
-const options = {
+const options: boxen.Options = {
     padding: 1,
     margin: 1,
     borderStyle: "round"
