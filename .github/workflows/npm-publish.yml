@@ -13,7 +13,7 @@ jobs:
         with:
           node-version: 16
       - run: npm install
-      - run: rpm run dev
+      - run: npm run dev
 
   publish-npm:
     needs: build
