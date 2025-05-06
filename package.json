@@ -17,7 +17,7 @@
     "tsc": "tsc",
     "prepublish": "npm run tsc && npm run build",
     "build": "node dist/build.js",
-    "dev": "npm run tsc && npm run build && node dist/build.js",
+    "dev": "npm run tsc && npm run build && node dist/build.js && node ./bin/card.js",
     "lint": "eslint \"src/**.ts\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
