@@ -1,59 +1,50 @@
 #!/usr/bin/env node
-// 👆 Used to tell Node.js that this is a CLI tool
-
-"use strict"
-
-const chalk = require("chalk");
-const boxen = require("boxen");
-
-// アニメーション用の関数
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-// コンソールをクリアする関数
-function clearConsole() {
-    process.stdout.write("\x1Bc");
-}
-
-// 文字列を行に分割
-function splitIntoLines(text) {
-    return text.split("\n");
-}
-
-// ボックスを描画する関数
-function drawBox(content, borderColor = "white") {
-    return boxen(content, {
-        padding: 1,
-        margin: 1,
-        borderStyle: "round",
-        borderColor: borderColor
+"use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
-}
-
-// カラーコードを生成
-function generateColors(count) {
-    const colors = [];
-    for (let i = 1; i <= count; i++) {
-        // 単純な色の配列を使用
-        const baseColors = ["green", "yellow", "blue", "magenta", "cyan", "white", "red"];
-        colors.push(baseColors[i % baseColors.length]);
-    }
-    return colors;
-}
-
-// 最大行長を計算（事前計算用）
-function calculateMaxLineLength(lines) {
-    let maxLength = 0;
-    for (const line of lines) {
-        if (line.length > maxLength) {
-            maxLength = line.length;
-        }
-    }
-    return maxLength;
-}
-
-// 柴犬アート
+};
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.main = void 0;
+const chalk_1 = __importDefault(require("chalk"));
+const boxen_1 = __importStar(require("boxen"));
+const options = {
+    padding: 1,
+    margin: 1,
+    borderStyle: "round",
+    borderColor: "white"
+};
 const shibaInuArt = `_                          ,-､
 .:ヾ、            ,へ、__ /.  l
 .    l            |   /    ｀ヽ|
@@ -69,33 +60,121 @@ const shibaInuArt = `_                          ,-､
             |   |    '   |
             |.  l.    }  l_
              ',  ヽ、\`:､_,.)
-             └-‐''`;
-
-// カードのデータ
-const data = {
-    name: chalk.white("               Yu Otsubo"),
-    handle: chalk.white("tubone24"),
-    work: chalk.white("FullCycle Developer") + chalk.cyan("@") + chalk.greenBright("KAG"),
-    twitter: chalk.gray("https://twitter.com/") + chalk.cyan("meitante1conan"),
-    github: chalk.gray("https://github.com/") + chalk.green("tubone24"),
-    facebook: chalk.gray("https://www.facebook.com/") + chalk.blueBright("yu.otsubo"),
-    portfolio: chalk.cyan("https://portfolio.tubone-project24.xyz"),
-    blog: chalk.cyan("https://blog.tubone-project24.xyz"),
-    contact: chalk.cyan("https://portfolio.tubone-project24.xyz/#contact"),
-    instagram: chalk.gray("https://www.instagram.com/") + chalk.magenta("mugimugi.cutedog/"),
-    npx: chalk.red("npx") + " " + chalk.white("tubone24"),
-    labelWork: chalk.white.bold("       Work:"),
-    labelTwitter: chalk.white.bold("    Twitter:"),
-    labelGitHub: chalk.white.bold("     GitHub:"),
-    labelFacebook: chalk.white.bold("   Facebook:"),
-    labelInstagram: chalk.white.bold("  Instagram:"),
-    labelPortfolio: chalk.white.bold("  Portfolio:"),
-    labelBlog: chalk.white.bold("       Blog:"),
-    labelContact: chalk.white.bold("    Contact:"),
-    labelCard: chalk.white.bold("       Card:")
+             └-‐'`;
+const sleep = (ms) => {
+    return new Promise(resolve => setTimeout(resolve, ms));
 };
-
-// カードの内容を生成
+const clearConsole = () => {
+    process.stdout.write("\x1Bc");
+};
+const splitIntoLines = (text) => {
+    return text.split("\n");
+};
+const drawBox = (content, borderColor = "white") => {
+    return (0, boxen_1.default)(content, {
+        padding: 1,
+        margin: 1,
+        borderStyle: "round",
+        borderColor: borderColor
+    });
+};
+const generateColors = (count) => {
+    const colors = [];
+    for (let i = 1; i <= count; i++) {
+        const baseColors = ["green", "yellow", "blue", "magenta", "cyan", "white", "red"];
+        colors.push(baseColors[i % baseColors.length]);
+    }
+    return colors;
+};
+const calculateMaxLineLength = (lines) => {
+    let maxLength = 0;
+    for (const line of lines) {
+        if (line.length > maxLength) {
+            maxLength = line.length;
+        }
+    }
+    return maxLength;
+};
+function main() {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const outputContent = output;
+            clearConsole();
+            const lines = splitIntoLines(outputContent);
+            const maxLineLength = calculateMaxLineLength(lines);
+            const emptyBox = drawBox(" ".repeat(maxLineLength));
+            clearConsole();
+            console.log(emptyBox);
+            yield sleep(100);
+            let currentContent = "";
+            let displayContent = "";
+            for (let i = 0; i < lines.length; i++) {
+                const line = lines[i];
+                if (line.trim() === "") {
+                    currentContent += line + "\n";
+                    displayContent = currentContent;
+                    clearConsole();
+                    console.log(drawBox(displayContent));
+                    yield sleep(50);
+                    continue;
+                }
+                for (let j = 0; j < line.length; j++) {
+                    currentContent += line[j];
+                    displayContent = currentContent;
+                    clearConsole();
+                    console.log(drawBox(displayContent));
+                    yield sleep(10);
+                }
+                currentContent += "\n";
+                displayContent = currentContent;
+                clearConsole();
+                console.log(drawBox(displayContent));
+                yield sleep(50);
+            }
+            clearConsole();
+            console.log(drawBox(displayContent));
+            console.log(chalk_1.default.yellow(shibaInuArt));
+            yield sleep(300);
+            const colors = ["green", "yellow", "blue", "magenta", "cyan", "red", "white"];
+            for (let i = 0; i < 30; i++) {
+                const color = colors[i % colors.length];
+                clearConsole();
+                console.log(drawBox(displayContent, color));
+                console.log(chalk_1.default.yellow(shibaInuArt));
+                yield sleep(100);
+            }
+            clearConsole();
+            console.log(drawBox(displayContent, "green"));
+            console.log(chalk_1.default.yellow(shibaInuArt));
+        }
+        catch (error) {
+            console.error("エラーが発生しました:", error);
+        }
+    });
+}
+exports.main = main;
+const data = {
+    name: chalk_1.default.white("               Yu Otsubo"),
+    handle: chalk_1.default.white("tubone24"),
+    work: chalk_1.default.white("FullCycle Developer") + chalk_1.default.cyan("@") + chalk_1.default.greenBright("KAG"),
+    twitter: chalk_1.default.gray("https://twitter.com/") + chalk_1.default.cyan("meitante1conan"),
+    github: chalk_1.default.gray("https://github.com/") + chalk_1.default.green("tubone24"),
+    facebook: chalk_1.default.gray("https://www.facebook.com/") + chalk_1.default.blueBright("yu.otsubo"),
+    portfolio: chalk_1.default.cyan("https://portfolio.tubone-project24.xyz"),
+    blog: chalk_1.default.cyan("https://blog.tubone-project24.xyz"),
+    contact: chalk_1.default.cyan("https://portfolio.tubone-project24.xyz/#contact"),
+    instagram: chalk_1.default.gray("https://www.instagram.com/") + chalk_1.default.magenta("mugimugi.cutedog/"),
+    npx: chalk_1.default.red("npx") + " " + chalk_1.default.white("tubone24"),
+    labelWork: chalk_1.default.white.bold("       Work:"),
+    labelTwitter: chalk_1.default.white.bold("    Twitter:"),
+    labelGitHub: chalk_1.default.white.bold("     GitHub:"),
+    labelFacebook: chalk_1.default.white.bold("   Facebook:"),
+    labelInstagram: chalk_1.default.white.bold("  Instagram:"),
+    labelPortfolio: chalk_1.default.white.bold("  Portfolio:"),
+    labelBlog: chalk_1.default.white.bold("       Blog:"),
+    labelContact: chalk_1.default.white.bold("    Contact:"),
+    labelCard: chalk_1.default.white.bold("       Card:")
+};
 const newline = "\n";
 const heading = `${data.name} / ${data.handle}`;
 const working = `${data.labelWork}  ${data.work}`;
@@ -107,97 +186,17 @@ const portfolio = `${data.labelPortfolio}  ${data.portfolio}`;
 const bloging = `${data.labelBlog}  ${data.blog}`;
 const contact = `${data.labelContact}  ${data.contact}`;
 const carding = `${data.labelCard}  ${data.npx}`;
-
 const output = heading +
-               newline + newline +
-               working + newline + newline +
-               twittering + newline +
-               facebooking + newline +
-               instagraming + newline +
-               githubing + newline +
-               portfolio + newline +
-               bloging + newline +
-               contact + newline + newline +
-               carding;
-
-// メイン関数
-async function main() {
-    try {
-        // コンソールをクリア
-        clearConsole();
-        
-        // 出力内容を行に分割
-        const lines = splitIntoLines(output);
-        
-        // 最大行長を計算（事前計算）
-        const maxLineLength = calculateMaxLineLength(lines);
-        
-        // 枠のサイズを固定するために、最初に空の枠を表示
-        const emptyBox = drawBox(" ".repeat(maxLineLength));
-        clearConsole();
-        console.log(emptyBox);
-        await sleep(100);
-        
-        // アニメーション表示用の変数
-        let currentContent = "";
-        let displayContent = "";
-        
-        // 1文字ずつ表示（簡略化）
-        for (let i = 0; i < lines.length; i++) {
-            const line = lines[i];
-            
-            // 空行はそのまま追加
-            if (line.trim() === "") {
-                currentContent += line + "\n";
-                displayContent = currentContent;
-                clearConsole();
-                console.log(drawBox(displayContent));
-                await sleep(10);
-                continue;
-            }
-            
-            // 1文字ずつ追加
-            for (let j = 0; j < line.length; j++) {
-                currentContent += line[j];
-                displayContent = currentContent;
-                clearConsole();
-                console.log(drawBox(displayContent));
-                await sleep(3);
-            }
-            
-            // 行の終わりに改行を追加
-            currentContent += "\n";
-            displayContent = currentContent;
-            clearConsole();
-            console.log(drawBox(displayContent));
-            await sleep(10); // 行の終わりで少し待機
-        }
-        
-        // 柴犬アートを追加
-        clearConsole();
-        console.log(drawBox(displayContent));
-        console.log(chalk.yellow(shibaInuArt));
-        await sleep(300);
-        
-        // ボーダーの色を変化させる
-        const colors = ["green", "yellow", "blue", "magenta", "cyan", "red", "white"];
-        for (let i = 0; i < 30; i++) {
-            const color = colors[i % colors.length];
-            clearConsole();
-            console.log(drawBox(displayContent, color));
-            console.log(chalk.yellow(shibaInuArt));
-            await sleep(100);
-        }
-        
-        // 最終的な表示
-        clearConsole();
-        console.log(drawBox(displayContent, "green"));
-        console.log(chalk.yellow(shibaInuArt));
-        
-    } catch (error) {
-        console.error("エラーが発生しました:", error);
-    }
-}
-
-// メイン関数を実行
+    newline + newline +
+    working + newline + newline +
+    twittering + newline +
+    facebooking + newline +
+    instagraming + newline +
+    githubing + newline +
+    portfolio + newline +
+    bloging + newline +
+    contact + newline + newline +
+    carding;
+const finalOutput = chalk_1.default.green((0, boxen_1.default)(output, options)) + newline + chalk_1.default.yellow(shibaInuArt);
 main();
+//# sourceMappingURL=build.js.map

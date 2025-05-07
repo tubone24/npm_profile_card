@@ -16,9 +16,9 @@
   "scripts": {
     "tsc": "tsc",
     "prepublish": "npm run tsc && npm run build-bin",
-    "build-bin": "node dist/build.js",
+    "build-bin": "cp dist/build.js bin/card.js && chmod +x bin/card.js",
     "build": "npm run tsc && npm run build-bin",
-    "dev": "npm run tsc && npm run build-bin && node dist/build.js && node ./bin/card.js",
+    "dev": "npm run tsc && npm run build-bin && node ./bin/card.js",
     "lint": "eslint \"src/**.ts\" --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
