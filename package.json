@@ -31,8 +31,7 @@
     "business card"
   ],
   "files": [
-    "bin/card.js",
-    "bin/output"
+    "bin/card.js"
   ],
   "devDependencies": {
     "@types/cli-boxes": "^2.0.1",
