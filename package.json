@@ -1,6 +1,6 @@
 {
   "name": "tubone24",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "A personal card for tubone24",
   "main": "/bin/card.js",
   "bin": {
@@ -31,8 +31,7 @@
     "business card"
   ],
   "files": [
-    "bin/card.js",
-    "bin/output"
+    "bin/card.js"
   ],
   "devDependencies": {
     "@types/cli-boxes": "^2.0.1",
