@@ -39,6 +39,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.main = void 0;
 const chalk_1 = __importDefault(require("chalk"));
 const boxen_1 = __importStar(require("boxen"));
+const qrcode_terminal_1 = __importDefault(require("qrcode-terminal"));
 const options = {
     padding: 1,
     margin: 1,
@@ -131,21 +132,41 @@ function main() {
                 console.log(drawBox(displayContent));
                 yield sleep(50);
             }
+            const generateQRCode = () => {
+                return new Promise((resolve) => {
+                    let qrString = "";
+                    qrcode_terminal_1.default.generate("https://portfolio.tubone-project24.xyz", { small: true }, (qr) => {
+                        qrString = qr;
+                        resolve(qrString);
+                    });
+                });
+            };
+            const qrCodeString = yield generateQRCode();
+            const qrCodeLines = qrCodeString.split("\n");
+            const shibaInuLines = shibaInuArt.split("\n");
+            const combinedArt = [];
+            const maxLines = Math.max(shibaInuLines.length, qrCodeLines.length);
+            for (let i = 0; i < maxLines; i++) {
+                const shibaLine = i < shibaInuLines.length ? shibaInuLines[i] : "";
+                const qrLine = i < qrCodeLines.length ? qrCodeLines[i] : "";
+                const padding = 5;
+                combinedArt.push(qrLine + " ".repeat(padding) + chalk_1.default.yellow(shibaLine));
+            }
             clearConsole();
             console.log(drawBox(displayContent));
-            console.log(chalk_1.default.yellow(shibaInuArt));
+            console.log(combinedArt.join("\n"));
             yield sleep(300);
             const colors = ["green", "yellow", "blue", "magenta", "cyan", "red", "white"];
             for (let i = 0; i < 30; i++) {
                 const color = colors[i % colors.length];
                 clearConsole();
                 console.log(drawBox(displayContent, color));
-                console.log(chalk_1.default.yellow(shibaInuArt));
+                console.log(combinedArt.join("\n"));
                 yield sleep(100);
             }
             clearConsole();
             console.log(drawBox(displayContent, "green"));
-            console.log(chalk_1.default.yellow(shibaInuArt));
+            console.log(combinedArt.join("\n"));
         }
         catch (error) {
             console.error("エラーが発生しました:", error);
@@ -197,6 +218,26 @@ const output = heading +
     bloging + newline +
     contact + newline + newline +
     carding;
+const generateQRCodeSync = () => {
+    let qrString = "";
+    qrcode_terminal_1.default.generate("https://portfolio.tubone-project24.xyz", { small: true }, (qr) => {
+        qrString = qr;
+    });
+    return qrString;
+};
+const combineArt = (shibaArt, qrCode) => {
+    const shibaLines = shibaArt.split("\n");
+    const qrLines = qrCode.split("\n");
+    const maxLines = Math.max(shibaLines.length, qrLines.length);
+    const combined = [];
+    for (let i = 0; i < maxLines; i++) {
+        const shibaLine = i < shibaLines.length ? shibaLines[i] : "";
+        const qrLine = i < qrLines.length ? qrLines[i] : "";
+        const padding = 5;
+        combined.push(qrLine + " ".repeat(padding) + chalk_1.default.yellow(shibaLine));
+    }
+    return combined.join("\n");
+};
 const finalOutput = chalk_1.default.green((0, boxen_1.default)(output, options)) + newline + chalk_1.default.yellow(shibaInuArt);
 main();
 //# sourceMappingURL=build.js.map
