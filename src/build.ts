@@ -5,6 +5,7 @@ import chalk from "chalk";
 import boxen, { Options, BorderStyle } from "boxen";
 import { readFileSync, writeFileSync, chmodSync } from "fs";
 import { join } from "path";
+import qrcode from "qrcode-terminal";
 
 // Define options for Boxen
 const options: Options = {
@@ -134,10 +135,42 @@ async function main(): Promise<void> {
             await sleep(50); // 行の終わりで少し待機
         }
         
-        // 柴犬アートを追加
+        // QRコードを生成
+        const generateQRCode = (): Promise<string> => {
+            return new Promise((resolve) => {
+                let qrString = "";
+                // qrcode-terminalの出力をキャプチャするためのカスタム関数
+                qrcode.generate("https://portfolio.tubone-project24.xyz", { small: true }, (qr) => {
+                    qrString = qr;
+                    resolve(qrString);
+                });
+            });
+        };
+
+        // QRコードを取得
+        const qrCodeString = await generateQRCode();
+        const qrCodeLines = qrCodeString.split("\n");
+
+        // 柴犬アートとQRコードを横に並べる
+        const shibaInuLines = shibaInuArt.split("\n");
+        const combinedArt: string[] = [];
+        
+        // 2つのアートの最大行数を取得
+        const maxLines = Math.max(shibaInuLines.length, qrCodeLines.length);
+        
+        // 各行を結合（QRコードを左、柴犬アートを右に配置）
+        for (let i = 0; i < maxLines; i++) {
+            const shibaLine = i < shibaInuLines.length ? shibaInuLines[i] : "";
+            const qrLine = i < qrCodeLines.length ? qrCodeLines[i] : "";
+            // QRコードと柴犬アートの間のスペース
+            const padding = 5;
+            combinedArt.push(qrLine + " ".repeat(padding) + chalk.yellow(shibaLine));
+        }
+        
+        // 結合したアートを表示
         clearConsole();
         console.log(drawBox(displayContent));
-        console.log(chalk.yellow(shibaInuArt));
+        console.log(combinedArt.join("\n"));
         await sleep(300);
         
         // ボーダーの色を変化させる
@@ -146,14 +179,14 @@ async function main(): Promise<void> {
             const color = colors[i % colors.length];
             clearConsole();
             console.log(drawBox(displayContent, color));
-            console.log(chalk.yellow(shibaInuArt));
+            console.log(combinedArt.join("\n"));
             await sleep(100);
         }
         
         // 最終的な表示
         clearConsole();
         console.log(drawBox(displayContent, "green"));
-        console.log(chalk.yellow(shibaInuArt));
+        console.log(combinedArt.join("\n"));
         
     } catch (error) {
         console.error("エラーが発生しました:", error);
@@ -207,6 +240,37 @@ const output = heading +
                contact + newline + newline +
                carding;
 
+// QRコードを生成
+const generateQRCodeSync = (): string => {
+    let qrString = "";
+    // qrcode-terminalの出力をキャプチャするためのカスタム関数
+    qrcode.generate("https://portfolio.tubone-project24.xyz", { small: true }, (qr) => {
+        qrString = qr;
+    });
+    return qrString;
+};
+
+// 柴犬アートとQRコードを横に並べる関数（QRコードを左、柴犬アートを右に配置）
+const combineArt = (shibaArt: string, qrCode: string): string => {
+    const shibaLines = shibaArt.split("\n");
+    const qrLines = qrCode.split("\n");
+    const maxLines = Math.max(shibaLines.length, qrLines.length);
+    const combined: string[] = [];
+    
+    for (let i = 0; i < maxLines; i++) {
+        const shibaLine = i < shibaLines.length ? shibaLines[i] : "";
+        const qrLine = i < qrLines.length ? qrLines[i] : "";
+        const padding = 5; // QRコードと柴犬アートの間のスペース
+        combined.push(qrLine + " ".repeat(padding) + chalk.yellow(shibaLine));
+    }
+    
+    return combined.join("\n");
+};
+
+// 注意: この部分は実際には使用されていないようですが、
+// 必要に応じて以下のようにfinalOutputを更新できます
+// const qrCode = generateQRCodeSync();
+// const finalOutput = chalk.green(boxen(output, options)) + newline + combineArt(shibaInuArt, qrCode);
 const finalOutput = chalk.green(boxen(output, options)) + newline + chalk.yellow(shibaInuArt);
 
 
