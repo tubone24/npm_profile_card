@@ -4,13 +4,13 @@
 
 # Usage
 
-## npm
+## npx
 
 ```
 npx tubone24
 ```
 
-![img](https://i.imgur.com/KcjLilg.png)
+![demo](./docs/images/dmeo.gif)
 
 ## develop
 
