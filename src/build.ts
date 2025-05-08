@@ -197,7 +197,7 @@ const data = {
     name: chalk.white("               Yu Otsubo"),
     handle: chalk.white("tubone24"),
     work: chalk.white("FullCycle Developer") + chalk.cyan("@") + chalk.greenBright("KAG"),
-    twitter: chalk.gray("https://twitter.com/") + chalk.cyan("meitante1conan"),
+    twitter: chalk.gray("https://twitter.com/") + chalk.cyan("tubone24"),
     github: chalk.gray("https://github.com/") + chalk.green("tubone24"),
     facebook: chalk.gray("https://www.facebook.com/") + chalk.blueBright("yu.otsubo"),
     portfolio: chalk.cyan("https://portfolio.tubone-project24.xyz"),
