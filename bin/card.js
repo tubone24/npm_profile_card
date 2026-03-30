@@ -178,19 +178,21 @@ const data = {
     name: chalk_1.default.white("               Yu Otsubo"),
     handle: chalk_1.default.white("tubone24"),
     work: chalk_1.default.white("FullCycle Developer") + chalk_1.default.cyan("@") + chalk_1.default.greenBright("KAG"),
-    twitter: chalk_1.default.gray("https://twitter.com/") + chalk_1.default.cyan("meitante1conan"),
+    twitter: chalk_1.default.gray("https://twitter.com/") + chalk_1.default.cyan("tubone24"),
     github: chalk_1.default.gray("https://github.com/") + chalk_1.default.green("tubone24"),
     facebook: chalk_1.default.gray("https://www.facebook.com/") + chalk_1.default.blueBright("yu.otsubo"),
     portfolio: chalk_1.default.cyan("https://portfolio.tubone-project24.xyz"),
     blog: chalk_1.default.cyan("https://blog.tubone-project24.xyz"),
     contact: chalk_1.default.cyan("https://portfolio.tubone-project24.xyz/#contact"),
     instagram: chalk_1.default.gray("https://www.instagram.com/") + chalk_1.default.magenta("mugimugi.cutedog/"),
+    sottome: chalk_1.default.cyan("https://sottome.digital/"),
     npx: chalk_1.default.red("npx") + " " + chalk_1.default.white("tubone24"),
     labelWork: chalk_1.default.white.bold("       Work:"),
     labelTwitter: chalk_1.default.white.bold("    Twitter:"),
     labelGitHub: chalk_1.default.white.bold("     GitHub:"),
     labelFacebook: chalk_1.default.white.bold("   Facebook:"),
     labelInstagram: chalk_1.default.white.bold("  Instagram:"),
+    labelSottoMe: chalk_1.default.white.bold("    SottoMe:"),
     labelPortfolio: chalk_1.default.white.bold("  Portfolio:"),
     labelBlog: chalk_1.default.white.bold("       Blog:"),
     labelContact: chalk_1.default.white.bold("    Contact:"),
@@ -203,6 +205,7 @@ const twittering = `${data.labelTwitter}  ${data.twitter}`;
 const instagraming = `${data.labelInstagram}  ${data.instagram}`;
 const githubing = `${data.labelGitHub}  ${data.github}`;
 const facebooking = `${data.labelFacebook}  ${data.facebook}`;
+const sottomeing = `${data.labelSottoMe}  ${data.sottome}`;
 const portfolio = `${data.labelPortfolio}  ${data.portfolio}`;
 const bloging = `${data.labelBlog}  ${data.blog}`;
 const contact = `${data.labelContact}  ${data.contact}`;
@@ -214,6 +217,7 @@ const output = heading +
     facebooking + newline +
     instagraming + newline +
     githubing + newline +
+    sottomeing + newline +
     portfolio + newline +
     bloging + newline +
     contact + newline + newline +
