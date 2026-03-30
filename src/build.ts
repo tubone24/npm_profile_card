@@ -204,12 +204,14 @@ const data = {
     blog: chalk.cyan("https://blog.tubone-project24.xyz"),
     contact: chalk.cyan("https://portfolio.tubone-project24.xyz/#contact"),
     instagram: chalk.gray("https://www.instagram.com/") + chalk.magenta("mugimugi.cutedog/"),
+    sottome: chalk.cyan("https://sottome.digital/"),
     npx: chalk.red("npx") + " " + chalk.white("tubone24"),
     labelWork: chalk.white.bold("       Work:"),
     labelTwitter: chalk.white.bold("    Twitter:"),
     labelGitHub: chalk.white.bold("     GitHub:"),
     labelFacebook: chalk.white.bold("   Facebook:"),
     labelInstagram: chalk.white.bold("  Instagram:"),
+    labelSottoMe: chalk.white.bold("    SottoMe:"),
     labelPortfolio: chalk.white.bold("  Portfolio:"),
     labelBlog: chalk.white.bold("       Blog:"),
     labelContact: chalk.white.bold("    Contact:"),
@@ -223,6 +225,7 @@ const twittering = `${data.labelTwitter}  ${data.twitter}`;
 const instagraming = `${data.labelInstagram}  ${data.instagram}`;
 const githubing = `${data.labelGitHub}  ${data.github}`;
 const facebooking = `${data.labelFacebook}  ${data.facebook}`;
+const sottomeing = `${data.labelSottoMe}  ${data.sottome}`;
 const portfolio = `${data.labelPortfolio}  ${data.portfolio}`;
 const bloging = `${data.labelBlog}  ${data.blog}`;
 const contact = `${data.labelContact}  ${data.contact}`;
@@ -235,6 +238,7 @@ const output = heading +
                facebooking + newline +
                instagraming + newline +
                githubing + newline +
+               sottomeing + newline +
                portfolio + newline +
                bloging + newline +
                contact + newline + newline +
