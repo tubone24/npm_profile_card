@@ -33,7 +33,7 @@
   ],
   "devDependencies": {
     "@types/cli-boxes": "^2.0.1",
-    "@types/node": "17.0.21",
+    "@types/node": "17.0.45",
     "@types/qrcode-terminal": "^0.12.2",
     "@typescript-eslint/eslint-plugin": "5.13.0",
     "@typescript-eslint/parser": "5.13.0",
